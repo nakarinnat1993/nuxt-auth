@@ -25,9 +25,10 @@ export default {
             }
 
             try {
-                await this.$auth.loginWith('local', {
+                const response = await this.$auth.loginWith('local', {
                     data: payload,
                 })
+                this.$auth.setUser(response.data.data.user)
                 this.$router.push('/')
             } catch (e) {
                 this.$router.push('/login')
